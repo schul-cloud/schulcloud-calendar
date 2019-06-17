@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/schul-cloud/schulcloud-calendar.svg?branch=master)](https://travis-ci.org/schul-cloud/schulcloud-calendar)
+[![Build Status](https://travis-ci.org/schul-cloud/schulcloud-calendar.svg?branch=master)](https://travis-ci.org/schul-cloud/schulcloud-calendar) [![Greenkeeper badge](https://badges.greenkeeper.io/schul-cloud/schulcloud-calendar.svg)](https://greenkeeper.io/)
 
 # schulcloud-calendar
 
