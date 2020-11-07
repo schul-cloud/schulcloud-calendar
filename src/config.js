@@ -3,6 +3,7 @@
  */
 
 exports.NODE_ENV = process.env.NODE_ENV;
+exports.PORT = process.env.PORT || 3000;
 
 /**
  * Database settings for production environment
@@ -13,6 +14,11 @@ exports.DB_USERNAME = process.env.DB_USERNAME;
 exports.DB_PASSWORD = process.env.DB_PASSWORD;
 exports.DB_PORT = process.env.DB_PORT || 5432;
 exports.API_KEY = process.env.API_KEY || 'example';
+exports.PROCESS_EXIT = {
+    GENERAL_FAIL: 1,
+    APPLICATION_FAIL: 2,
+    DATABASE_FAIL: 3
+}
 
 /**
  * Base Paths
