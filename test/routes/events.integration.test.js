@@ -78,6 +78,7 @@ describe('routes/events', () => {
 
 			after(async () => {
 				resolvedServerScopes.data = resolvedServerScopes.data.filter(scope => scope.id !== scopeId);
+				await resetDB();
 			});
 
 			// only read permissions
@@ -168,8 +169,35 @@ describe('routes/events', () => {
 			});
 		});
 
-		describe('DELETE', () => {
+		describe.only('DELETE', () => {
+			const scopeId = '59cce16281297026d02abc123';
+			const courseName = 'delete event test case';
+			const baseDate = new Date();
+			let eventId;
+			
+
+			before(async () => {
+				addCourseScope(resolvedServerScopes, scopeId, courseName, true);
+				const events = await addTestEvents({ scopeId, startDate: getDate(-30, baseDate), endDate: getDate(30, baseDate), summary: 'my event to be deleted'});
+				expect(events[0]).to.not.be.null;
+				eventId = events[0].attributes.uid;
+			});
+
+			after(async () => {
+				resolvedServerScopes.data = resolvedServerScopes.data.filter(scope => scope.id !== scopeId);
+				await resetDB(); 
+			});
+
 			// has write permissions
+			it('delete an event where I have write permissions', async () => {	
+				const result = await request(app)
+				.delete(`/events/${eventId}`)
+				.set('Authorization', userId)
+
+				//must not show up anymore
+				expect(result.body.data.some((e) => e.attributes.summary === 'my event to be deleted')).to.be.false;
+			});
+
 			// only read permissions
 			// no permissions
 			// => for eventId as param
