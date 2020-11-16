@@ -37,15 +37,15 @@ router.get('/events', authenticateFromHeaderField, function (req, res, next) {
 		eventId: req.query['event-id'],
 		from: req.query['from'],
 		until: req.query['until'],
-		all: req.query['all']
+		// all: req.query['all']
 	};
-
+	/*
 	if (['1', 1, 'true'].includes(filter.all)) {
 		filter.all = true;
 	} else if(['0', 0, 'false'].includes(filter.all)) {
 		filter.all = false;
 	}
-
+	*/
 	const user = req.user;
 	authorizeAccessToScopeId(user, filter.scopeId)
 		.then(() => getEvents(filter, user.scopes))
@@ -58,11 +58,11 @@ router.get('/events', authenticateFromHeaderField, function (req, res, next) {
 router.post('/events', jsonApiToJson, authenticateFromHeaderField, function (req, res, next) {
 	handlePost(req, res, next, eventsToJsonApi);
 });
-
+/*
 router.post('/events/ics', icsToJson, authenticateFromHeaderField, function (req, res, next) {
 	handlePost(req, res, next, eventsToIcsInJsonApi);
 });
-
+*/
 function handlePost(req, res, next, outputFormatter) {
 	const user = req.user;
 	const events = req.events;
