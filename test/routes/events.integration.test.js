@@ -141,6 +141,7 @@ describe('routes/events', () => {
 
 			after(async () => {
 				resolvedServerScopes.data = resolvedServerScopes.data.filter(scope => scope.id !== scopeId);
+				// TODO missing filter
 				await resetDB();
 			});
 
@@ -169,7 +170,7 @@ describe('routes/events', () => {
 			});
 		});
 
-		describe.only('DELETE', () => {
+		describe('DELETE', () => {
 			const scopeId = '59cce16281297026d02abc123';
 			const courseName = 'delete event test case';
 			const baseDate = new Date();
@@ -195,7 +196,8 @@ describe('routes/events', () => {
 				.set('Authorization', userId)
 
 				//must not show up anymore
-				expect(result.body.data.some((e) => e.attributes.summary === 'my event to be deleted')).to.be.false;
+				expect(result.statusCode).to.equal(204);
+				// test DB --> add find all db call to test utils
 			});
 
 			// only read permissions

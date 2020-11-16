@@ -139,7 +139,7 @@ function sendUpdateNotification(updatedEvents) {
 	return updatedEvents;
 }
 
-router.delete('/events/:eventId', jsonApiToJson, authenticateFromHeaderField, function (req, res, next) {
+router.delete('/events/:eventId', authenticateFromHeaderField, function (req, res, next) {
 	const eventId = req.params.eventId;
 	const user = req.user;
 	const scopeIds = user.scopes;
