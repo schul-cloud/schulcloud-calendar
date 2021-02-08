@@ -7,13 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Allowed Types of change: `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`
 
-## [25.3.1] - 2020-12-18
-
-## Added
-
-- SC-8217 - new configurable options for postgres client
-
-## [25.2.0]
+## [25.3.2] - 2021-02-02
 
 ### Fixed
 
@@ -22,9 +16,19 @@ Allowed Types of change: `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `
 
 ### Added
 
- - OPS-1297 - Added Changelog github action
- - Unit Tests for event parser
- - fix docker tag latest push
+- SC-8512 - route to fix event duplications & setting IS_MIGRATION in config.js
+
+## [25.3.1] - 2020-12-18
+
+## Added
+
+- SC-8217 - new configurable options for postgres client
+
+## [25.2.0]
+
+### Added
+
+- OPS-1297 - Added Changelog github action
 
 ### Changed
 

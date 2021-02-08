@@ -1,4 +1,5 @@
 const getAllScopesForToken = require('../http/getAllScopesForToken');
+const config = require('./../config');
 
 function authenticateFromHeaderField(req, res, next) {
 	const token = req.get('Authorization');
@@ -8,6 +9,19 @@ function authenticateFromHeaderField(req, res, next) {
 function authenticateFromQueryParameter(req, res, next) {
 	const token = req.query['authorization'];
 	getUser(req, res, next, token);
+}
+
+function isMigration(req, res, next) {
+	if (config.IS_MIGRATION === true) {
+		next();
+	} else {
+		const err = {
+			message: 'This route is available only for migration!',
+			status: 401,
+			title: 'Unauthorized',
+		};
+		next(err);
+	}
 }
 
 function getUser(req, res, next, token) {
@@ -61,5 +75,6 @@ function parseUserInformation(apiResponse) {
 
 module.exports = {
 	authenticateFromHeaderField,
-	authenticateFromQueryParameter
+	authenticateFromQueryParameter,
+	isMigration,
 };

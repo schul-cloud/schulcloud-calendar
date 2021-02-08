@@ -24,15 +24,15 @@ jobs:
       - name: enable check if this is a feature pr
         if: startsWith(github.head_ref, 'feature')
         run: |
-          echo "FEATURE_OR_RELEASE_OR_HOTFIX=true" >> $GITHUB_ENV
+          echo "FEATURE_OR_RELEASE_OR_HOTFIX=false" >> $GITHUB_ENV
       - name: enable check if this is a release pr
         if: startsWith(github.head_ref, 'release')
         run: |
-          echo "FEATURE_OR_RELEASE_OR_HOTFIX=true" >> $GITHUB_ENV
+          echo "FEATURE_OR_RELEASE_OR_HOTFIX=false" >> $GITHUB_ENV
       - name: enable check if this is a hotfix pr
         if: startsWith(github.head_ref, 'hotfix')
         run: |
-          echo "FEATURE_OR_RELEASE_OR_HOTFIX=true" >> $GITHUB_ENV
+          echo "FEATURE_OR_RELEASE_OR_HOTFIX=false" >> $GITHUB_ENV
       - name: Changelog updates required but missing
         if: steps.changed.outputs.matched != 'true' && env.FEATURE_OR_RELEASE_OR_HOTFIX == 'true'
         run: |
